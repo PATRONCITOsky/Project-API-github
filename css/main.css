@@ -47,7 +47,7 @@ body {
 /* Result */
 .result {
   position: relative;
-  background-color: purple;
+  background-color: rgb(0, 19, 128);
   border-radius: 0.3rem;
   box-shadow: 2px 2px 3px gray;
   color: white;
@@ -88,7 +88,7 @@ body {
 
 .result__blog {
   grid-area: blog;
-  color: goldenrod;
+  color: rgb(218, 32, 32);
 }
 
 .result__error {

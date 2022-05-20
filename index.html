@@ -18,15 +18,25 @@
 
         <!-- Content -->
         <article class="content">
-            <h1 class="content__title">Search GitHub users</h1>
+            <h1 class="content__title">Buscar Usuarios de GitHub</h1>
             <p>{{message}}</p>
             <!-- Search -->
-            <form class="search">
-                <input type="text" class="search__input" required placeholder="Search GitHub users">
-                <input type="submit" class="search__submit" value="Search">
+            <form class="search" v-on:submit.prevent="Buscar">
+                <input v-model="busqueda" type="text" class="search__input" required placeholder="Search GitHub users">
+                <input type="submit" class="search__submit" value="Buscar">
             </form>
 
             <!-- Result -->
+            <div class="result" v-if="result">
+                <h2 class="result__name">Hoover</h2>
+                <img src="https://scontent.fbog14-1.fna.fbcdn.net/v/t1.6435-9/132633332_414926193076229_5790617059996931348_n.jpg?stp=dst-jpg_p720x720&_nc_cat=102&ccb=1-7&_nc_sid=e3f864&_nc_ohc=kx_narEu_ssAX8Xg2Ya&_nc_ht=scontent.fbog14-1.fna&oh=00_AT93y18L0jBEYAWgdwlBjfTt27i3txJN8ArQm04idNfILQ&oe=62AB4A71" alt="" class="result__avatar">
+                <p class="result__bio">Aprendiz exitoso graduado de Tecnología en ADSI del SENA
+                    creadro de nuevas apps completamente revolucionarias
+                    <br>
+                    <a href="https://www.facebook.com/hoover.becerra.98" class="result__blog "><i class="fa fa-facebook-official" aria-hidden="true">F</i></a>
+                </p>
+                
+            </div>
             <!-- Error -->
             <div class="result__error"></div>
         </article>
