@@ -28,23 +28,25 @@
 
             <!-- Result -->
             <div class="result" v-if="result">
-                <h2 class="result__name">Hoover</h2>
-                <img src="https://scontent.fbog14-1.fna.fbcdn.net/v/t1.6435-9/132633332_414926193076229_5790617059996931348_n.jpg?stp=dst-jpg_p720x720&_nc_cat=102&ccb=1-7&_nc_sid=e3f864&_nc_ohc=kx_narEu_ssAX8Xg2Ya&_nc_ht=scontent.fbog14-1.fna&oh=00_AT93y18L0jBEYAWgdwlBjfTt27i3txJN8ArQm04idNfILQ&oe=62AB4A71" alt="" class="result__avatar">
-                <p class="result__bio">Aprendiz exitoso graduado de Tecnología en ADSI del SENA
-                    creadro de nuevas apps completamente revolucionarias
+                <h2 class="result__name">{{result.name}}</h2>
+                <img v-bind:src="result.avatar_url" alt="" class="result__avatar">
+                <p class="result__bio">{{result.bio}}
                     <br>
                     <a href="https://www.facebook.com/hoover.becerra.98" class="result__blog "><i class="fa fa-facebook-official" aria-hidden="true">F</i></a>
                 </p>
                 
             </div>
+            <!--cuando no ha habido búsqueda-->
+            <p v-else>Esperando por la busqueda</p>
             <!-- Error -->
-            <div class="result__error"></div>
+            <div v-if="error" class="result__error">Error</div>
         </article>
     </div>
     <script src="js/main.js"></script>
     <script>
         //creamos una const para guardar el acoplamiento
-    const Skyapp = app.mount('#app')
+    const Skyapp = ella.mount('#app')
+    
     </script>
 </body>
 
