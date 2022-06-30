@@ -19,9 +19,22 @@ const ella = Vue.createApp({
   created(){
     //console.log("CREADO")
     const FavoritosGuardados = JSON.parse(window.localStorage.getItem("misfavoritos"))
-    if(FavoritosGuardados.length){
+
+    //esta evaluando si existe y ademas midiendo su longitud.
+    //se abrevia con ?
+    if(FavoritosGuardados?.length){
       //recreamos el map con un nuevo nombre
-      //const favoritosnew = new Map()
+      //quiero reconstruir favoritos
+      //quiero reconstruir los favoritos
+      //creo un map que es una coleccion con key y value
+      const favoritosRebuild = new Map(
+        //me valgo del método map para obtener el id como una key y el arreglo completo
+        //como el value de mi Map
+        FavoritosGuardados.map(alias=>[alias.id, alias]))
+        //asignamos a la variavle favoritos de la instancia el valor del nuevo
+        //favoritosRebuild
+        
+      this.favoritos = favoritosRebuild
     }
     //console.log(FavoritosGuardados)
   },
@@ -36,10 +49,6 @@ const ella = Vue.createApp({
       //pasamos la info a un autentico array
       return Array.from(this.favoritos.values())
       //El metodo values() traerá solo los valores sin las claves
-    },
-
-    actulizarStorage(){
-      window.localStorage.setItem('misfavoritos',JSON.stringify(this.TodosFavoritos) )
     }
 
   },
@@ -76,6 +85,15 @@ const ella = Vue.createApp({
     RemoverFavorito(){
       this.favoritos.delete(this.result.id);  
       this.actulizarStorage()
+    },
+
+    actulizarStorage(){
+      window.localStorage.setItem('misfavoritos',JSON.stringify(this.TodosFavoritos) )
+    },
+
+    mostrarFavorito(parametro){
+      //tipo array con objetos de javacript o tipo json
+      this.result = parametro
     }
 
   }

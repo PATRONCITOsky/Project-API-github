@@ -13,13 +13,16 @@
 <body>
     <div id="app">
         <!-- Favorites -->
+
         <div class="favorites">
-            <!--Ya que todofavoritos devuelve el array-->
-            <div class="favorite" v-for="alias in TodosFavoritos">
-                <a href="">
-                    <img :src="alias.avatar_url" alt="" class="favorite__avatar">
-                </a>
-            </div>
+            <transition-group name="list">
+                <!--Ya que todofavoritos devuelve el array-->
+                <div class="favorite" v-for="alias in TodosFavoritos" :key="alias.id">
+                    <a @click.prevent="mostrarFavorito(alias)" href="">
+                        <img :src="alias.avatar_url" alt="" class="favorite__avatar">
+                    </a>
+                </div>
+            </transition-group>
         </div>
 
         <!-- Content -->
@@ -34,20 +37,25 @@
             </form>
 
             <!-- Result -->
-            <div class="result" v-if="result">
-                <!--añadir a favoritos-->
-                <a v-if="estaFavoritos" href="" class="result__toggle-favorite" v-on:click.prevent="RemoverFavorito">Remover Favoritos<img src="img/basura.png" alt="Basura" width="30" height="30"></a>
-                <a v-else href="" class="result__toggle-favorite" v-on:click.prevent="addFavorito">Agregar Favoritos<img src="img/corazon.png" alt="Favorito" width="30" height="30"></a>
-                <!--result.name -->
-                <h2 class="result__name">{{result.name}}</h2>
-                <img v-bind:src="result.avatar_url" alt="" class="result__avatar">
-                <p class="result__bio">{{result.bio}}
-                    <br>
-                    <!--target me trae la informacion en otra pagina-->
-                    <a target="_blank" v-bind:href="result.html_url" class="result__blog ">Perfil</a>
-                </p>
-                
-            </div>
+            <transition>
+                <div class="result" v-if="result">
+                    <!--añadir a favoritos-->
+                    <a v-if="estaFavoritos" href="" class="result__toggle-favorite"
+                        v-on:click.prevent="RemoverFavorito">Remover Favoritos<img src="img/basura.png" alt="Basura"
+                            width="30" height="30"></a>
+                    <a v-else href="" class="result__toggle-favorite" v-on:click.prevent="addFavorito">Agregar
+                        Favoritos<img src="img/corazon.png" alt="Favorito" width="30" height="30"></a>
+                    <!--result.name -->
+                    <h2 class="result__name">{{result.name}}</h2>
+                    <img v-bind:src="result.avatar_url" alt="" class="result__avatar">
+                    <p class="result__bio">{{result.bio}}
+                        <br>
+                        <!--target me trae la informacion en otra pagina-->
+                        <a target="_blank" v-bind:href="result.html_url" class="result__blog ">Perfil</a>
+                    </p>
+
+                </div>
+            </transition>
             <!--cuando no ha habido búsqueda-->
             <p v-else>Esperando por la busqueda</p>
             <!-- Error -->
@@ -57,8 +65,8 @@
     <script src="js/main.js"></script>
     <script>
         //creamos una const para guardar el acoplamiento
-    const Skyapp = ella.mount('#app')
-    
+        const Skyapp = ella.mount('#app')
+
     </script>
 </body>
 
